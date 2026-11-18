@@ -387,7 +387,7 @@
       if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
         return navigator.share({
           files: [file],
-          text: 'Какой ты студент РГГУ? Мой тип — ' + DATA.types[state.result].name
+          text: 'Какой ты студент РГГУ? Мой тип — ' + DATA.types[state.result].name + '\n\nПройти тест ⬇️\n@RGGU_abituriyent_test_bot'
         }).catch(function (err) {
           if (!err || err.name !== 'AbortError') download(blob);
         });
