@@ -63,15 +63,21 @@
   function renderCover() {
     return '' +
       '<section class="screen screen--cover" aria-label="Обложка">' +
-        '<span class="decor cover-decor-1"></span>' +
-        '<span class="decor cover-decor-2"></span>' +
-        '<span class="decor cover-decor-3"></span>' +
+        '<div class="decor-layer" aria-hidden="true">' +
+          '<span class="decor cover-decor-1"></span>' +
+          '<span class="decor cover-decor-2"></span>' +
+          '<span class="decor cover-decor-3"></span>' +
+        '</div>' +
         '<img class="cover-logo" src="assets/img/logo.svg" alt="РГГУ" width="50" height="50">' +
-        '<h1 class="cover-title">Какой ты<br>студент РГГУ?</h1>' +
-        '<span class="cover-spark" aria-hidden="true">✧</span>' +
-        '<p class="cover-sub">Узнай свою<br>студенческую<br>личность</p>' +
-        '<div class="cover-art" aria-hidden="true">' +
+        '<div class="cover-head">' +
+          '<h1 class="cover-title">Какой ты<br>студент РГГУ?</h1>' +
+          '<span class="cover-spark" aria-hidden="true">✧</span>' +
+        '</div>' +
+        '<div class="cover-sub-block">' +
           icon('i-star', 'cover-star') +
+          '<p class="cover-sub">Узнай свою<br>студенческую<br>личность</p>' +
+        '</div>' +
+        '<div class="cover-art" aria-hidden="true">' +
           '<img class="cover-blob" src="assets/img/cover/blob.svg" alt="">' +
           '<img class="cover-statue" src="assets/img/cover/statue.webp" alt="">' +
         '</div>' +
@@ -100,9 +106,11 @@
 
     return '' +
       '<section class="screen screen--how" aria-label="Как это работает">' +
-        '<span class="decor how-decor-1"></span>' +
-        '<span class="decor how-decor-2"></span>' +
-        '<span class="decor how-decor-3"></span>' +
+        '<div class="decor-layer" aria-hidden="true">' +
+          '<span class="decor how-decor-1"></span>' +
+          '<span class="decor how-decor-2"></span>' +
+          '<span class="decor how-decor-3"></span>' +
+        '</div>' +
         '<div class="topbar">' +
           '<button class="icon-btn" type="button" data-action="back" aria-label="Назад">' + icon('i-arrow-left') + '</button>' +
           '<span class="badge">Перед&nbsp;стартом</span>' +
@@ -155,8 +163,10 @@
   function renderLoading() {
     return '' +
       '<section class="screen screen--loading" aria-label="Считаем результат">' +
-        '<span class="decor loading-decor-1"></span>' +
-        '<span class="decor loading-decor-2"></span>' +
+        '<div class="decor-layer" aria-hidden="true">' +
+          '<span class="decor loading-decor-1"></span>' +
+          '<span class="decor loading-decor-2"></span>' +
+        '</div>' +
         '<img class="loading-art" src="assets/img/loading.webp" alt="" width="326" height="217">' +
         '<h1 class="loading-title">Анализируем<br>твои ответы…</h1>' +
         '<p class="loading-sub">Почти готово!</p>' +
@@ -168,9 +178,11 @@
     var t = DATA.types[state.result];
     return '' +
       '<section class="screen screen--result" aria-label="Результат">' +
-        '<span class="decor result-decor-1"></span>' +
-        '<span class="decor result-decor-2"></span>' +
-        '<span class="decor result-decor-3"></span>' +
+        '<div class="decor-layer" aria-hidden="true">' +
+          '<span class="decor result-decor-1"></span>' +
+          '<span class="decor result-decor-2"></span>' +
+          '<span class="decor result-decor-3"></span>' +
+        '</div>' +
         '<button class="icon-btn result-back" type="button" data-action="back" aria-label="Назад">' + icon('i-arrow-left') + '</button>' +
         '<span class="badge badge--outline result-badge">ТВОЙ ТИП</span>' +
         '<div class="result-art"><img src="' + t.image + '" alt="' + plainName(t.name) + '" width="' + t.imgW + '" height="' + t.imgH + '"></div>' +

@@ -27,7 +27,7 @@
   --font-hand: 'Caveat', 'Bradley Hand', 'Segoe Script', cursive;
 
   --pad: 24px;
-  --gap-bottom: 40px;
+  --gap-bottom: 24px;
 }
 
 *,
@@ -104,7 +104,11 @@ p, h1, h2, h3 { margin: 0; }
   overflow: hidden;
   background: var(--bg);
   animation: screen-in 0.26s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+
+.screen::-webkit-scrollbar { width: 0; height: 0; display: none; }
 
 .screen.is-back { animation-name: screen-in-back; }
 
@@ -123,7 +127,16 @@ p, h1, h2, h3 { margin: 0; }
   * { transition-duration: 0.01ms !important; }
 }
 
-/* декоративные пятна */
+/* декоративные пятна: слой обрезает их по границам экрана, как фрейм в макете,
+   иначе они увеличивают область прокрутки */
+.decor-layer {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .decor {
   position: absolute;
   z-index: -1;
@@ -223,7 +236,7 @@ p, h1, h2, h3 { margin: 0; }
   align-items: center;
   justify-content: center;
   min-height: 24px;
-  margin-top: calc(69px + env(safe-area-inset-top));
+  margin-top: calc(var(--pad) + env(safe-area-inset-top));
 }
 
 .topbar__title {
@@ -288,11 +301,15 @@ p, h1, h2, h3 { margin: 0; }
   margin: calc(55px + env(safe-area-inset-top)) auto 0;
 }
 
-.cover-title {
+.cover-head {
   position: relative;
   z-index: 3;
-  margin-top: 23px;
   max-width: 320px;
+  margin-top: 23px;
+}
+
+.cover-title {
+  margin: 0;
   font-family: var(--font-hand);
   font-size: 40px;
   font-weight: 700;
@@ -303,8 +320,10 @@ p, h1, h2, h3 { margin: 0; }
 .cover-spark {
   position: absolute;
   z-index: 3;
-  left: 282px;
-  top: 240px;
+  top: 115px;
+  right: 34px;
+  width: 28px;
+  text-align: center;
   font-family: 'Baloo 2', 'Apple Symbols', var(--font-ui);
   font-size: 28px;
   font-weight: 700;
@@ -313,10 +332,14 @@ p, h1, h2, h3 { margin: 0; }
   pointer-events: none;
 }
 
-.cover-sub {
+.cover-sub-block {
   position: relative;
   z-index: 3;
   margin-top: 132px;
+}
+
+.cover-sub {
+  margin: 0;
   font-family: var(--font-hand);
   font-size: 24px;
   font-weight: 700;
@@ -326,39 +349,39 @@ p, h1, h2, h3 { margin: 0; }
 
 .cover-art {
   position: absolute;
-  right: 6.2%;
-  bottom: calc(99px + env(safe-area-inset-bottom));
+  right: var(--pad);
+  bottom: calc(75px + env(safe-area-inset-bottom));
   width: auto;
-  height: min(449px, 55dvh);
-  aspect-ratio: 296 / 449;
+  height: min(116.15vw, 453px, 55dvh);
+  aspect-ratio: 296 / 453;
   z-index: 1;
   pointer-events: none;
 }
 
 .cover-blob {
   position: absolute;
-  inset: 0;
+  left: 0;
+  top: 0.883%;
   width: 100%;
-  height: 100%;
+  height: 99.117%;
 }
 
 .cover-statue {
   position: absolute;
-  right: 2%;
-  bottom: 3.3%;
-  width: 98%;
-  height: 97.4%;
+  left: 0;
+  top: 0;
+  width: 97.973%;
+  height: 96.688%;
   object-fit: contain;
-  object-position: bottom right;
   transform: scaleX(-1);
 }
 
 .cover-star {
   position: absolute;
-  left: -13.6%;
-  top: -1.5%;
-  width: 13.5%;
-  height: auto;
+  left: 5.7px;
+  top: -59px;
+  width: 40px;
+  height: 40px;
   color: var(--accent);
   transform: rotate(9.4deg);
 }
@@ -410,7 +433,7 @@ p, h1, h2, h3 { margin: 0; }
 }
 
 .how-title {
-  margin-top: 39px;
+  margin-top: 84px;
   font-family: var(--font-display);
   font-size: 28px;
   font-weight: 800;
@@ -483,7 +506,7 @@ p, h1, h2, h3 { margin: 0; }
   align-items: center;
   justify-content: space-between;
   min-height: 24px;
-  margin-top: calc(69px + env(safe-area-inset-top));
+  margin-top: calc(var(--pad) + env(safe-area-inset-top));
 }
 
 .q-count {
@@ -516,6 +539,7 @@ p, h1, h2, h3 { margin: 0; }
 }
 
 .q-title {
+  height: 81px;
   margin-top: 20px;
   font-family: var(--font-display);
   font-size: 20px;
@@ -533,7 +557,7 @@ p, h1, h2, h3 { margin: 0; }
 
 .answers {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 12px 18px;
   margin-top: 12px;
 }
@@ -542,7 +566,8 @@ p, h1, h2, h3 { margin: 0; }
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 192px;
+  height: 222px;
+  min-width: 0;
   padding: 11px;
   text-align: left;
   background: #fff;
@@ -568,8 +593,9 @@ p, h1, h2, h3 { margin: 0; }
 
 .answer__img {
   width: 100%;
-  height: 76px;
-  object-fit: cover;
+  height: auto;
+  aspect-ratio: 276 / 152;
+  object-fit: contain;
   border-radius: 15px;
 }
 
@@ -689,12 +715,11 @@ p, h1, h2, h3 { margin: 0; }
 
 .result-back {
   position: absolute;
-  top: calc(57px + env(safe-area-inset-top));
-  left: 24px;
+  top: calc(16px + env(safe-area-inset-top));
+  left: var(--pad);
+  margin-top: 0;
   z-index: 2;
 }
-
-.result-back .icon { width: 20px; height: 20px; }
 
 .result-decor-1 {
   top: 118px;
@@ -720,7 +745,7 @@ p, h1, h2, h3 { margin: 0; }
   background: var(--accent-wash-2);
 }
 
-.result-badge { margin-top: calc(65px + env(safe-area-inset-top)); }
+.result-badge { margin-top: calc(var(--pad) + env(safe-area-inset-top)); }
 
 .result-art {
   display: flex;
@@ -809,8 +834,6 @@ p, h1, h2, h3 { margin: 0; }
   overflow-y: auto;
   overflow-x: hidden;
 }
-
-.screen--card .topbar { margin-top: calc(69px + env(safe-area-inset-top)); }
 
 .card-lead {
   margin-top: 23px;
@@ -940,22 +963,15 @@ p, h1, h2, h3 { margin: 0; }
    ============================================================ */
 
 @media (max-height: 780px) {
-  .screen { --gap-bottom: 24px; }
-
   .cover-logo { margin-top: calc(34px + env(safe-area-inset-top)); }
-  .cover-title { margin-top: 16px; font-size: 36px; line-height: 40px; }
-  .cover-sub { margin-top: 84px; }
-  .cover-art { height: min(420px, 50dvh); }
+  .cover-head { margin-top: 16px; }
+  .cover-title { font-size: 36px; line-height: 40px; }
+  .cover-sub-block { margin-top: 84px; }
 
-  .how-title { margin-top: 28px; }
+  .how-title { margin-top: 52px; }
   .how-steps { gap: 16px; margin-top: 28px; }
   .how-actions { padding-top: 16px; }
 
-  .topbar,
-  .q-top { margin-top: calc(48px + env(safe-area-inset-top)); }
-
-  .result-back { top: calc(40px + env(safe-area-inset-top)); }
-  .result-badge { margin-top: calc(48px + env(safe-area-inset-top)); }
   .result-art { height: 220px; margin-top: 10px; }
   .result-art img { max-height: 220px; }
   .result-name { margin-top: 18px; font-size: 25px; line-height: 30px; }
@@ -963,21 +979,38 @@ p, h1, h2, h3 { margin: 0; }
   .superpower { margin-top: 20px; padding: 16px 18px 16px; min-height: 0; }
   .superpower__text { margin-top: 8px; }
 
-  .q-title { margin-top: 14px; font-size: 18px; line-height: 24px; }
-  .q-badge { margin-top: 14px; }
-  .answers { gap: 10px 14px; }
-  .answer { min-height: 164px; padding: 10px; }
-  .answer__img { height: 62px; }
-  .q-actions { gap: 14px; padding-top: 18px; }
-
   .loading-title { margin-top: 24px; font-size: 25px; line-height: 30px; }
   .loading-bar { margin-top: 24px; }
   .loading-art { width: 270px; }
 
-  .screen--card .topbar { margin-top: calc(40px + env(safe-area-inset-top)); }
   .card-lead { margin-top: 12px; font-size: 18px; line-height: 22px; }
   .share-card { margin-top: 14px; }
   .card-actions { padding-top: 12px; }
+}
+
+/* На узких экранах заголовок вопроса перестраивается один раз, а не на
+   каждом вопросе: так геометрия экрана не «скачет» при перелистывании. */
+@media (max-width: 389px) {
+  .q-title {
+    height: 78px;
+    font-size: 19px;
+    line-height: 26px;
+  }
+}
+
+@media (max-width: 359px) {
+  .q-title {
+    height: 72px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+}
+
+@media (max-width: 343px) {
+  .q-title { height: 96px; }
+
+  .answers { gap: 12px; }
+  .answer { height: 242px; }
 }
 
 /* совсем низкие экраны: убираем лишний воздух, чтобы кнопка результата
