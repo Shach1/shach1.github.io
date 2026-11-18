@@ -197,8 +197,7 @@ p, h1, h2, h3 { margin: 0; }
 
 .btn:focus-visible,
 .answer:focus-visible,
-.icon-btn:focus-visible,
-.link-back:focus-visible {
+.icon-btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
@@ -539,7 +538,6 @@ p, h1, h2, h3 { margin: 0; }
 }
 
 .q-title {
-  height: 81px;
   margin-top: 20px;
   font-family: var(--font-display);
   font-size: 20px;
@@ -566,7 +564,7 @@ p, h1, h2, h3 { margin: 0; }
   position: relative;
   display: flex;
   flex-direction: column;
-  height: 222px;
+  min-height: 192px;
   min-width: 0;
   padding: 11px;
   text-align: left;
@@ -629,24 +627,9 @@ p, h1, h2, h3 { margin: 0; }
 .q-actions {
   display: flex;
   flex-direction: column;
-  gap: 24px;
   margin-top: auto;
   padding-top: 28px;
 }
-
-.link-back {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  padding: 0;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 16px;
-  color: var(--muted-2);
-}
-
-.link-back .icon { width: 16px; height: 16px; margin-left: -4px; }
 
 /* ============================================================
    Считаем результат
@@ -972,6 +955,9 @@ p, h1, h2, h3 { margin: 0; }
   .how-steps { gap: 16px; margin-top: 28px; }
   .how-actions { padding-top: 16px; }
 
+  .q-badge { margin-top: 14px; }
+  .q-title { margin-top: 14px; font-size: 18px; line-height: 24px; }
+
   .result-art { height: 220px; margin-top: 10px; }
   .result-art img { max-height: 220px; }
   .result-name { margin-top: 18px; font-size: 25px; line-height: 30px; }
@@ -986,31 +972,6 @@ p, h1, h2, h3 { margin: 0; }
   .card-lead { margin-top: 12px; font-size: 18px; line-height: 22px; }
   .share-card { margin-top: 14px; }
   .card-actions { padding-top: 12px; }
-}
-
-/* На узких экранах заголовок вопроса перестраивается один раз, а не на
-   каждом вопросе: так геометрия экрана не «скачет» при перелистывании. */
-@media (max-width: 389px) {
-  .q-title {
-    height: 78px;
-    font-size: 19px;
-    line-height: 26px;
-  }
-}
-
-@media (max-width: 359px) {
-  .q-title {
-    height: 72px;
-    font-size: 18px;
-    line-height: 24px;
-  }
-}
-
-@media (max-width: 343px) {
-  .q-title { height: 96px; }
-
-  .answers { gap: 12px; }
-  .answer { height: 242px; }
 }
 
 /* совсем низкие экраны: убираем лишний воздух, чтобы кнопка результата

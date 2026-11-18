@@ -152,7 +152,6 @@
         '<p class="q-hint">Выбери один вариант ответа</p>' +
         '<div class="answers" role="radiogroup" aria-label="Варианты ответа">' + cards + '</div>' +
         '<div class="q-actions">' +
-          '<button class="link-back" type="button" data-action="back">' + icon('i-arrow-left') + 'Назад</button>' +
           '<button class="btn btn--primary" type="button" data-action="next"' + (selected ? '' : ' disabled') + '>' +
             (last ? 'Узнать результат' : 'Далее&nbsp;&nbsp;→') +
           '</button>' +
