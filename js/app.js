@@ -83,7 +83,7 @@
         '</div>' +
         '<div class="cover-actions">' +
           '<button class="btn btn--primary" type="button" data-action="start">Пройти тест</button>' +
-          '<p class="cover-note">15&nbsp;вопросов&nbsp; • около&nbsp;3&nbsp;минут</p>' +
+          '<p class="cover-note">15&nbsp;вопросов&nbsp; • около&nbsp;10&nbsp;минут</p>' +
         '</div>' +
       '</section>';
   }
@@ -119,7 +119,7 @@
         '<div class="how-steps">' + items + '</div>' +
         '<div class="how-actions">' +
           '<button class="btn btn--primary" type="button" data-action="begin">Начать тест</button>' +
-          '<p class="how-note">15&nbsp;вопросов&nbsp; • около&nbsp;3&nbsp;минут</p>' +
+          '<p class="how-note">15&nbsp;вопросов&nbsp; • около&nbsp;10&nbsp;минут</p>' +
         '</div>' +
       '</section>';
   }
@@ -193,7 +193,7 @@
           '<p class="superpower__text">' + t.superpower + '</p>' +
         '</div>' +
         '<div class="result-actions">' +
-          '<button class="btn btn--primary btn--download" type="button" data-action="card">Скачать карточку ' + icon('i-download') + '</button>' +
+          '<button class="btn btn--primary btn--download" type="button" data-action="card">Рассказать друзьям ' + '</button>' +
         '</div>' +
       '</section>';
   }
